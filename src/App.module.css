@@ -1,0 +1,36 @@
+html {
+	width: 100% !important;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #e6ca0e;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.image {
+	width: 700px;
+	height: 400px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-right: 13px;
+}
+
+@media (max-width: 770px) {
+	.container {
+		width: 100% !important;
+	}
+	.image {
+		width: 100% !important;
+		height: 220px !important;
+		margin-left: 15px;
+		margin-bottom: 50px !important;
+	}
+}

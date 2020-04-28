@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+.container {
+	margin: 30px 0 50px 0;
+}
+.card {
+	margin: 0 1.8rem 0 0 !important;
+}
+.card:hover {
+	transform: scale(1.1);
+	transition: ease-in-out 0.5s;
+	cursor: pointer;
+}
+
+.infected {
+	border-bottom: 10px solid rgba(0, 0, 255, 0.5);
+}
+
+.iheading {
+	color: rgba(0, 0, 255, 1);
+}
+
+.recovered {
+	border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+}
+
+.rheading {
+	color: rgba(0, 255, 0, 1);
+}
+
+.deaths {
+	border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+}
+
+.loading {
+	font-family: Roboto;
+}
+
+@media (max-width: 770px) {
+	.conatiner {
+		width: 80% !important;
+	}
+
+	.card {
+		width: 350px;
+		margin: 0 !important;
+		margin-left: 5px !important;
+		margin-bottom: 25px !important;
+		height: 220px;
+	}
+}
