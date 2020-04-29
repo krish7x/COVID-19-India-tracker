@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
 .root {
 	margin-top: 50px;
+}
+.loading {
+	font-family: Roboto;
 }
 
 @media (max-width: 770px) {

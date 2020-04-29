@@ -8,7 +8,6 @@ import {
 	TableRow,
 	Paper,
 } from "@material-ui/core";
-
 import styles from "./StatePicker.module.css";
 import { fetchStateData } from "../../api";
 
@@ -50,42 +49,40 @@ const StatePicker = () => {
 	}, []);
 
 	return (
-		<div>
-			<Paper className={styles.root}>
-				<TableContainer className={styles.container}>
-					<Table stickyHeader aria-label='sticky table'>
-						<TableHead>
-							<TableRow>
-								{columns.map((states) => (
-									<TableCell
-										key={states.id}
-										align={states.align}
-										style={{ minWidth: states.minWidth }}>
-										{states.label}
-									</TableCell>
-								))}
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{stateData.map((states, index) => {
-								return (
-									<TableRow hover role='checkbox' tabIndex={-1} key={index}>
-										{columns.map((column) => {
-											const value = states[column.id];
-											return (
-												<TableCell key={column.id} align={column.align}>
-													{value}
-												</TableCell>
-											);
-										})}
-									</TableRow>
-								);
-							})}
-						</TableBody>
-					</Table>
-				</TableContainer>
-			</Paper>
-		</div>
+		<Paper className={styles.root}>
+			<TableContainer className={styles.container}>
+				<Table stickyHeader aria-label='sticky table'>
+					<TableHead>
+						<TableRow>
+							{columns.map((states) => (
+								<TableCell
+									key={states.id}
+									align={states.align}
+									style={{ minWidth: states.minWidth }}>
+									{states.label}
+								</TableCell>
+							))}
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{stateData.map((states, index) => {
+							return (
+								<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+									{columns.map((column) => {
+										const value = states[column.id];
+										return (
+											<TableCell key={column.id} align={column.align}>
+												{value}
+											</TableCell>
+										);
+									})}
+								</TableRow>
+							);
+						})}
+					</TableBody>
+				</Table>
+			</TableContainer>
+		</Paper>
 	);
 };
 

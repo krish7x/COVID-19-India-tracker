@@ -51,7 +51,9 @@ class App extends Component {
 					date={date}
 					deltaData={this.state.deltaData}
 				/>
+
 				<Charts data={this.state.data} />
+
 				<TimeSeries />
 				<StatePicker />
 				<DistrictTable />

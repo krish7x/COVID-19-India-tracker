@@ -7,6 +7,7 @@ import {
 	TableHead,
 	TableRow,
 	Paper,
+	Typography,
 } from "@material-ui/core";
 import styles from "./DistrictTable.module.css";
 import { fetchDistrictData } from "../../api";
@@ -39,6 +40,31 @@ const DistrictTable = () => {
 		},
 	];
 
+	const loadingCondition =
+		districtData && !districtData.length ? (
+			<TableRow>
+				<TableCell align='center' colSpan={5}>
+					<Typography variant='button' display='block' align='center'>
+						Loading...
+					</Typography>
+				</TableCell>
+			</TableRow>
+		) : (
+			districtData.map((data, index) => {
+				return (
+					<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+						{columns.map((column) => {
+							const value = data[column.id];
+							return (
+								<TableCell key={column.id} align={column.align}>
+									{value}
+								</TableCell>
+							);
+						})}
+					</TableRow>
+				);
+			})
+		);
 	const fetchAPI = async () => {
 		const fetchData = await fetchDistrictData();
 		setDistrictData(fetchData);
@@ -47,7 +73,9 @@ const DistrictTable = () => {
 	useEffect(() => {
 		fetchAPI();
 	}, []);
-
+	if (!districtData) {
+		return <h1 className={styles.loading}>Loading..</h1>;
+	}
 	return (
 		<Paper className={styles.root}>
 			<TableContainer className={styles.container}>
@@ -64,22 +92,7 @@ const DistrictTable = () => {
 							))}
 						</TableRow>
 					</TableHead>
-					<TableBody>
-						{districtData.map((data, index) => {
-							return (
-								<TableRow hover role='checkbox' tabIndex={-1} key={index}>
-									{columns.map((column) => {
-										const value = data[column.id];
-										return (
-											<TableCell key={column.id} align={column.align}>
-												{value}
-											</TableCell>
-										);
-									})}
-								</TableRow>
-							);
-						})}
-					</TableBody>
+					<TableBody>{loadingCondition}</TableBody>
 				</Table>
 			</TableContainer>
 		</Paper>
