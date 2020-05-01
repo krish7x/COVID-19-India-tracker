@@ -12,7 +12,7 @@ import StatePicker from "./Components/StatePicker/StatePicker";
 import TimeSeries from "./Components/TimeSeries/TimeSeries";
 import Charts from "./Components/Charts/Charts";
 import DistrictTable from "./Components/DistrictTable/DistrictTable";
-import covid19 from "./Images/covid19.png";
+import covid19 from "./Images/covid-19.jpg";
 
 class App extends Component {
 	state = {
