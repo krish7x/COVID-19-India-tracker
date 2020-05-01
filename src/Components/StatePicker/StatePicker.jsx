@@ -7,12 +7,16 @@ import {
 	TableHead,
 	TableRow,
 	Paper,
+	Typography,
 } from "@material-ui/core";
 import styles from "./StatePicker.module.css";
 import { fetchStateData } from "../../api";
+import { getComparator, stableSort } from "../../utils/utils";
 
 const StatePicker = () => {
 	const [stateData, setStateData] = useState([]);
+	const [orderBy, setOrderBy] = useState("confirmedPersons");
+	const [order, setOrder] = useState("desc");
 
 	const columns = [
 		{ id: "stateName", label: "States", minWidth: 200 },
@@ -39,6 +43,34 @@ const StatePicker = () => {
 		},
 	];
 
+	const loadingCondition =
+		stateData && !stateData.length ? (
+			<TableRow>
+				<TableCell align='center' colSpan={5}>
+					<Typography variant='button' display='block' align='center'>
+						Loading...
+					</Typography>
+				</TableCell>
+			</TableRow>
+		) : (
+			stableSort(stateData, getComparator(order, orderBy)).map(
+				(states, index) => {
+					return (
+						<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+							{columns.map((column) => {
+								const value = states[column.id];
+								return (
+									<TableCell key={column.id} align={column.align}>
+										{value}
+									</TableCell>
+								);
+							})}
+						</TableRow>
+					);
+				}
+			)
+		);
+
 	const fetchAPI = async () => {
 		const fetchedData = await fetchStateData();
 		setStateData(fetchedData);
@@ -64,22 +96,7 @@ const StatePicker = () => {
 							))}
 						</TableRow>
 					</TableHead>
-					<TableBody>
-						{stateData.map((states, index) => {
-							return (
-								<TableRow hover role='checkbox' tabIndex={-1} key={index}>
-									{columns.map((column) => {
-										const value = states[column.id];
-										return (
-											<TableCell key={column.id} align={column.align}>
-												{value}
-											</TableCell>
-										);
-									})}
-								</TableRow>
-							);
-						})}
-					</TableBody>
+					<TableBody>{loadingCondition}</TableBody>
 				</Table>
 			</TableContainer>
 		</Paper>

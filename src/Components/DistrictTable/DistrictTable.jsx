@@ -11,9 +11,12 @@ import {
 } from "@material-ui/core";
 import styles from "./DistrictTable.module.css";
 import { fetchDistrictData } from "../../api";
+import { getComparator, stableSort } from "../../utils/utils";
 
 const DistrictTable = () => {
 	const [districtData, setDistrictData] = useState([]);
+	const [orderBy, setOrderBy] = useState("confirmed");
+	const [order, setOrder] = useState("desc");
 
 	const columns = [
 		{ id: "name", label: "Tamil Nadu", minWidth: 200 },
@@ -50,20 +53,22 @@ const DistrictTable = () => {
 				</TableCell>
 			</TableRow>
 		) : (
-			districtData.map((data, index) => {
-				return (
-					<TableRow hover role='checkbox' tabIndex={-1} key={index}>
-						{columns.map((column) => {
-							const value = data[column.id];
-							return (
-								<TableCell key={column.id} align={column.align}>
-									{value}
-								</TableCell>
-							);
-						})}
-					</TableRow>
-				);
-			})
+			stableSort(districtData, getComparator(order, orderBy)).map(
+				(data, index) => {
+					return (
+						<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+							{columns.map((column) => {
+								const value = data[column.id];
+								return (
+									<TableCell key={column.id} align={column.align}>
+										{value}
+									</TableCell>
+								);
+							})}
+						</TableRow>
+					);
+				}
+			)
 		);
 	const fetchAPI = async () => {
 		const fetchData = await fetchDistrictData();

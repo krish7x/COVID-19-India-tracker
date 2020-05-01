@@ -6,6 +6,7 @@ import {
 	fetchStateData,
 	fetchTimeSeries,
 	fetchTNTotCnt,
+	fetchDistrictData,
 } from "./api";
 import StatePicker from "./Components/StatePicker/StatePicker";
 import TimeSeries from "./Components/TimeSeries/TimeSeries";
@@ -20,6 +21,7 @@ class App extends Component {
 		tamilNadu: [],
 		deltaData: {},
 		totalCount: [],
+		districtData: [],
 	};
 
 	async componentDidMount() {
@@ -34,6 +36,9 @@ class App extends Component {
 
 		const totTNData = await fetchTNTotCnt();
 		this.setState({ totalCount: totTNData });
+
+		const fetchDistrictDdata = await fetchDistrictData();
+		this.setState({ districtData: fetchDistrictDdata });
 	}
 
 	render() {
@@ -55,7 +60,7 @@ class App extends Component {
 				<Charts data={this.state.data} />
 
 				<TimeSeries />
-				<StatePicker />
+				<StatePicker onSort={this.onSort} />
 				<DistrictTable />
 			</div>
 		);
