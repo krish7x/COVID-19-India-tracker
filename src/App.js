@@ -48,7 +48,7 @@ class App extends Component {
 
 		return (
 			<div className={styles.container}>
-				<img src={covid19} alt='covid19' className={styles.image} />
+				<h1>COVID-19 INDIA</h1>
 				<Cards
 					confirmed={confirmed}
 					recovered={recovered}
@@ -56,9 +56,7 @@ class App extends Component {
 					date={date}
 					deltaData={this.state.deltaData}
 				/>
-
 				<Charts data={this.state.data} />
-
 				<TimeSeries />
 				<StatePicker onSort={this.onSort} />
 				<DistrictTable />
