@@ -48,7 +48,7 @@ class App extends Component {
 
 		return (
 			<div className={styles.container}>
-				<h1>COVID-19 INDIA</h1>
+				<img src={covid19} alt='covid19' className={styles.image} />
 				<Cards
 					confirmed={confirmed}
 					recovered={recovered}
