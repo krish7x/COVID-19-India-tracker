@@ -6,7 +6,7 @@ import cx from "classnames";
 import Delta from "../Delta/Delta";
 import { fetchTimeSeries } from "../../api";
 
-const Cards = ({ confirmed, date }) => {
+const Cards = ({ confirmed, date, recovered, deaths }) => {
 	const [timeSeriesData, setTimeSeriesData] = useState([]);
 
 	const mapConfirmedDaily = timeSeriesData.map((data) => {
@@ -15,11 +15,11 @@ const Cards = ({ confirmed, date }) => {
 
 	let latestConfirmedDaily = mapConfirmedDaily[mapConfirmedDaily.length - 1];
 
-	const mapConfirmedTotal = timeSeriesData.map((data) => {
-		return data.confirmedTotal;
-	});
+	// const mapConfirmedTotal = timeSeriesData.map((data) => {
+	// 	return data.confirmedTotal;
+	// });
 
-	let latestConfirmedTotal = mapConfirmedTotal[mapConfirmedTotal.length - 1];
+	// let latestConfirmedTotal = mapConfirmedTotal[mapConfirmedTotal.length - 1];
 
 	const mapRecoveredDaily = timeSeriesData.map((data) => {
 		return data.recoveredDaily;
@@ -27,11 +27,11 @@ const Cards = ({ confirmed, date }) => {
 
 	let latestRecoveredDaily = mapRecoveredDaily[mapRecoveredDaily.length - 1];
 
-	const mapRecoveredTotal = timeSeriesData.map((data) => {
-		return data.recoveredTotal;
-	});
+	// const mapRecoveredTotal = timeSeriesData.map((data) => {
+	// 	return data.recoveredTotal;
+	// });
 
-	let latestRecoveredTotal = mapRecoveredTotal[mapRecoveredTotal.length - 1];
+	// let latestRecoveredTotal = mapRecoveredTotal[mapRecoveredTotal.length - 1];
 
 	const mapDeathsDaily = timeSeriesData.map((data) => {
 		return data.deathsDaily;
@@ -39,11 +39,11 @@ const Cards = ({ confirmed, date }) => {
 
 	let latestDeathsDaily = mapDeathsDaily[mapDeathsDaily.length - 1];
 
-	const mapDeathsTotal = timeSeriesData.map((data) => {
-		return data.deathsTotal;
-	});
+	// const mapDeathsTotal = timeSeriesData.map((data) => {
+	// 	return data.deathsTotal;
+	// });
 
-	let latestDeathsTotal = mapDeathsTotal[mapDeathsTotal.length - 1];
+	// let latestDeathsTotal = mapDeathsTotal[mapDeathsTotal.length - 1];
 
 	const fetchAPI = async () => {
 		const fetchData = await fetchTimeSeries();
@@ -70,12 +70,7 @@ const Cards = ({ confirmed, date }) => {
 					<CardContent>
 						<Typography className={styles.iheading}>Infected People</Typography>
 						<Typography color='textPrimary' variant='h4'>
-							<CountUp
-								start={0}
-								end={latestConfirmedTotal}
-								duration={2}
-								separator={","}
-							/>
+							<CountUp start={0} end={confirmed} duration={2} separator={","} />
 						</Typography>
 						<Typography color='textSecondary'>
 							Last updated at {(date = new Date().toLocaleTimeString())}
@@ -100,12 +95,7 @@ const Cards = ({ confirmed, date }) => {
 							Recovered People
 						</Typography>
 						<Typography color='textPrimary' variant='h4'>
-							<CountUp
-								start={0}
-								end={latestRecoveredTotal}
-								duration={2}
-								separator={","}
-							/>
+							<CountUp start={0} end={recovered} duration={2} separator={","} />
 						</Typography>
 						<Typography color='textSecondary'>
 							Last updated at {(date = new Date().toLocaleTimeString())}
@@ -128,12 +118,7 @@ const Cards = ({ confirmed, date }) => {
 					<CardContent>
 						<Typography color='error'>Deaths</Typography>
 						<Typography color='textPrimary' variant='h4'>
-							<CountUp
-								start={0}
-								end={latestDeathsTotal}
-								duration={2}
-								separator={","}
-							/>
+							<CountUp start={0} end={deaths} duration={2} separator={","} />
 						</Typography>
 						<Typography color='textSecondary'>
 							Last updated at {(date = new Date().toLocaleTimeString())}

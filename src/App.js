@@ -39,6 +39,7 @@ class App extends Component {
 
 		const fetchDistrictDdata = await fetchDistrictData();
 		this.setState({ districtData: fetchDistrictDdata });
+		console.log(fetchDistrictDdata);
 	}
 
 	render() {
