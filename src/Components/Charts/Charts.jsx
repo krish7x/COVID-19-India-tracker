@@ -22,6 +22,7 @@ const Charts = () => {
 			data={{
 				labels: indiaData.map(({ date }) => date),
 				pointHoverRadius: 5,
+				color: "#ffff",
 
 				datasets: [
 					{

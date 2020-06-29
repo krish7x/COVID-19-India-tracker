@@ -44,6 +44,12 @@ const DistrictTable = () => {
 			minWidth: 170,
 			align: "center",
 		},
+		{
+			id: "active",
+			label: "Active Cases",
+			minWidth: 170,
+			align: "center",
+		},
 
 		{
 			id: "recovered",

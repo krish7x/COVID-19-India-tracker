@@ -39,7 +39,6 @@ class App extends Component {
 
 		const fetchDistrictDdata = await fetchDistrictData();
 		this.setState({ districtData: fetchDistrictDdata });
-		console.log(fetchDistrictDdata);
 	}
 
 	render() {
@@ -58,9 +57,9 @@ class App extends Component {
 					deltaData={this.state.deltaData}
 				/>
 				<Charts data={this.state.data} />
-				<TimeSeries />
 				<StatePicker onSort={this.onSort} />
 				<DistrictTable />
+				<TimeSeries />
 			</div>
 		);
 	}

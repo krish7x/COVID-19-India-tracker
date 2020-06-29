@@ -9,11 +9,12 @@ export const fetchIndiaData = async () => {
 		} = await axios.get(url);
 
 		const modifiedData = {
-			confirmed: data.summary.total,
-			recovered: data.summary.discharged,
-			deaths: data.summary.deaths,
+			confirmed: parseInt(data.summary.total),
+			recovered: parseInt(data.summary.discharged),
+			deaths: parseInt(data.summary.deaths),
 			date: data.lastRefreshed,
 		};
+
 		return modifiedData;
 	} catch (error) {
 		console.log(error);
@@ -45,29 +46,22 @@ export const fetchStateData = async () => {
 	}
 };
 
-const districtURL =
-	"https://services9.arcgis.com/HwXIp55hAoiv6DE9/ArcGIS/rest/services/District_Wise_Covid_19_Status_view/FeatureServer/0/query";
+const districtURL = "https://api.covid19india.org/v2/state_district_wise.json";
 
 export const fetchDistrictData = async () => {
 	try {
-		const {
-			data: { features },
-		} = await axios.get(
-			`${districtURL}?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=standard&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=Name%2C+Positive_Cases%2C+Active_Cases%2C+Recovered%2C+Death%2C+Last_Updated_Date&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=json&token=`
-		);
+		const { data } = await axios.get(districtURL);
 
-		const modifiedData = features.map((data) => {
+		const TN = data[32];
+		const modifiedData = TN.districtData.map((data) => {
 			return {
-				name: data.attributes.Name,
-				confirmed: parseInt(data.attributes.Positive_Cases),
-				recovered: parseInt(data.attributes.Recovered),
-				deaths: parseInt(data.attributes.Death),
-				lastUpdated: new Date(
-					data.attributes.Last_Updated_Date
-				).toLocaleString(),
+				name: data.district,
+				confirmed: data.confirmed,
+				active: data.active,
+				recovered: data.recovered,
+				deaths: data.deceased,
 			};
 		});
-
 		return modifiedData;
 	} catch (error) {
 		console.log(error);

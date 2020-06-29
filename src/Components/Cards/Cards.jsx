@@ -15,23 +15,11 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 
 	let latestConfirmedDaily = mapConfirmedDaily[mapConfirmedDaily.length - 1];
 
-	// const mapConfirmedTotal = timeSeriesData.map((data) => {
-	// 	return data.confirmedTotal;
-	// });
-
-	// let latestConfirmedTotal = mapConfirmedTotal[mapConfirmedTotal.length - 1];
-
 	const mapRecoveredDaily = timeSeriesData.map((data) => {
 		return data.recoveredDaily;
 	});
 
 	let latestRecoveredDaily = mapRecoveredDaily[mapRecoveredDaily.length - 1];
-
-	// const mapRecoveredTotal = timeSeriesData.map((data) => {
-	// 	return data.recoveredTotal;
-	// });
-
-	// let latestRecoveredTotal = mapRecoveredTotal[mapRecoveredTotal.length - 1];
 
 	const mapDeathsDaily = timeSeriesData.map((data) => {
 		return data.deathsDaily;
@@ -39,11 +27,7 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 
 	let latestDeathsDaily = mapDeathsDaily[mapDeathsDaily.length - 1];
 
-	// const mapDeathsTotal = timeSeriesData.map((data) => {
-	// 	return data.deathsTotal;
-	// });
-
-	// let latestDeathsTotal = mapDeathsTotal[mapDeathsTotal.length - 1];
+	let latestActiveDaily = latestConfirmedDaily - latestRecoveredDaily;
 
 	const fetchAPI = async () => {
 		const fetchData = await fetchTimeSeries();
@@ -60,15 +44,15 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 
 	return (
 		<div className={styles.container}>
-			<Grid container spacing={3} justify='center'>
+			<Grid container spacing={4} justify='center'>
 				<Grid
 					item
-					xs={12}
-					md={3}
+					xs={10}
+					md={4}
 					component={Card}
 					className={cx(styles.card, styles.infected)}>
 					<CardContent>
-						<Typography className={styles.iheading}>Infected People</Typography>
+						<Typography className={styles.iheading}>Total Cases</Typography>
 						<Typography color='textPrimary' variant='h4'>
 							<CountUp start={0} end={confirmed} duration={2} separator={","} />
 						</Typography>
@@ -86,14 +70,41 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 				</Grid>
 				<Grid
 					item
-					xs={12}
-					md={3}
+					xs={10}
+					md={4}
+					component={Card}
+					className={cx(styles.card, styles.active)}>
+					<CardContent>
+						<Typography className={styles.aheading}>Active Cases</Typography>
+						<Typography color='textPrimary' variant='h4'>
+							<CountUp
+								start={0}
+								end={confirmed - recovered}
+								duration={2}
+								separator={","}
+							/>
+						</Typography>
+						<Typography color='textSecondary'>
+							Last updated at {(date = new Date().toLocaleTimeString())}
+						</Typography>
+
+						<br />
+						<Typography variant='body2'>
+							No.of people infected by COVID-19
+						</Typography>
+						<br />
+						<Delta inpCnt={latestActiveDaily} color='grey' size='med' />
+					</CardContent>
+				</Grid>
+
+				<Grid
+					item
+					xs={10}
+					md={4}
 					component={Card}
 					className={cx(styles.card, styles.recovered)}>
 					<CardContent>
-						<Typography className={styles.rheading}>
-							Recovered People
-						</Typography>
+						<Typography className={styles.rheading}>Recovered Cases</Typography>
 						<Typography color='textPrimary' variant='h4'>
 							<CountUp start={0} end={recovered} duration={2} separator={","} />
 						</Typography>
@@ -111,8 +122,8 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 				</Grid>
 				<Grid
 					item
-					xs={12}
-					md={3}
+					xs={10}
+					md={4}
 					component={Card}
 					className={cx(styles.card, styles.deaths)}>
 					<CardContent>

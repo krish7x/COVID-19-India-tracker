@@ -17,12 +17,19 @@
 	border-bottom: 10px solid rgba(0, 0, 255, 0.5);
 }
 
+.active {
+	border-bottom: 10px solid rgba(0, 217, 255, 0.5);
+}
 .iheading {
 	color: rgba(0, 0, 255, 1);
+}
+.aheading {
+	color: rgba(0, 217, 255, 1);
 }
 
 .recovered {
 	border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+	margin-top: 20px !important;
 }
 
 .rheading {
@@ -31,6 +38,7 @@
 
 .deaths {
 	border-bottom: 10px solid rgba(255, 0, 0, 0.5);
+	margin-top: 20px !important;
 }
 
 .loading {
@@ -43,7 +51,7 @@
 	}
 
 	.card {
-		width: 350px;
+		width: 70% !important;
 		margin: 0 !important;
 		margin-left: 5px !important;
 		margin-bottom: 25px !important;
