@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
 html {
 	width: 100% !important;
@@ -6,8 +7,23 @@ html {
 	padding: 0;
 }
 
+.heading {
+	color: white;
+	font-family: "Rubik", sans-serif;
+	margin-right: 6rem;
+}
+
 body {
 	background: #202124;
+}
+
+.covid {
+	background-color: white;
+	border-radius: 6px;
+	margin-left: 5px;
+	position: absolute;
+	top: 2rem;
+	right: 27%;
 }
 
 .container {
@@ -40,5 +56,140 @@ h1 {
 		height: 220px !important;
 		margin-left: 15px;
 		margin-bottom: 50px !important;
+	}
+}
+
+@media (max-width: 400px) {
+	.heading {
+		font-size: 2rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 14%;
+		top: 1.5rem;
+	}
+}
+@media (max-width: 1200px) {
+	.covid {
+		right: 25%;
+	}
+}
+@media (max-width: 1000px) {
+	.covid {
+		right: 21%;
+	}
+}
+@media (max-width: 950px) {
+	.covid {
+		right: 21%;
+		width: 5rem;
+		top: 2.4rem;
+	}
+}
+@media (max-width: 800px) {
+	.covid {
+		right: 12%;
+	}
+}
+@media (max-width: 860px) {
+	.covid {
+		right: 18%;
+		width: 5rem;
+		top: 2.4rem;
+	}
+}
+@media (max-width: 770px) {
+	.covid {
+		right: 17%;
+		width: 4rem;
+		top: 3rem;
+	}
+}
+@media (max-width: 730px) {
+	.covid {
+		right: 15%;
+		width: 4rem;
+		top: 3rem;
+	}
+}
+@media (max-width: 660px) {
+	.heading {
+		font-size: 2.5rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 23%;
+		top: 2rem;
+	}
+}
+@media (max-width: 580px) {
+	.heading {
+		font-size: 2rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 24%;
+		top: 1.5rem;
+	}
+}
+
+@media (max-width: 500px) {
+	.heading {
+		font-size: 2rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 20%;
+		top: 1.5rem;
+	}
+}
+
+@media (max-width: 450px) {
+	.heading {
+		font-size: 2rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 17%;
+		top: 1.5rem;
+	}
+}
+
+@media (max-width: 413px) {
+	.heading {
+		font-size: 2rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 3rem;
+		right: 14%;
+		top: 1.5rem;
+	}
+}
+@media (max-width: 365px) {
+	.heading {
+		font-size: 1.8rem;
+		margin-left: 1.9rem;
+	}
+	.covid {
+		width: 2.5rem;
+		right: 17%;
+		top: 1.4rem;
+	}
+}
+@media (max-width: 350px) {
+	.heading {
+		font-size: 1.6rem;
+		margin-left: 1.7rem;
+	}
+	.covid {
+		width: 2.5rem;
+		right: 16%;
+		top: 1.4rem;
 	}
 }

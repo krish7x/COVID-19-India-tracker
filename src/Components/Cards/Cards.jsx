@@ -61,10 +61,7 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 						</Typography>
 
 						<br />
-						<Typography variant='body2'>
-							No.of people infected by COVID-19
-						</Typography>
-						<br />
+
 						<Delta inpCnt={latestConfirmedDaily} color='grey' size='med' />
 					</CardContent>
 				</Grid>
@@ -89,10 +86,7 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 						</Typography>
 
 						<br />
-						<Typography variant='body2'>
-							No.of people infected by COVID-19
-						</Typography>
-						<br />
+
 						<Delta inpCnt={latestActiveDaily} color='grey' size='med' />
 					</CardContent>
 				</Grid>
@@ -113,10 +107,7 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 						</Typography>
 
 						<br />
-						<Typography variant='body2'>
-							No.of people recovered from COVID-19
-						</Typography>
-						<br />
+
 						<Delta inpCnt={latestRecoveredDaily} color='green' size='med' />
 					</CardContent>
 				</Grid>
@@ -137,10 +128,6 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 
 						<br />
 
-						<Typography variant='body2'>
-							No.of people died by COVID-19
-						</Typography>
-						<br />
 						<Delta inpCnt={latestDeathsDaily} color='red' size='med' />
 					</CardContent>
 				</Grid>

@@ -12,7 +12,7 @@ import StatePicker from "./Components/StatePicker/StatePicker";
 import TimeSeries from "./Components/TimeSeries/TimeSeries";
 import Charts from "./Components/Charts/Charts";
 import DistrictTable from "./Components/DistrictTable/DistrictTable";
-import covid19 from "./Images/covid-19.jpg";
+import covid19 from "./Images/covid19.png";
 
 class App extends Component {
 	state = {
@@ -48,7 +48,10 @@ class App extends Component {
 
 		return (
 			<div className={styles.container}>
-				<img src={covid19} alt='covid19' className={styles.image} />
+				<h1 className={styles.heading}>
+					COVID-19 INDIA
+					<img className={styles.covid} src={covid19} alt='covid' />
+				</h1>
 				<Cards
 					confirmed={confirmed}
 					recovered={recovered}
