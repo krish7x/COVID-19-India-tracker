@@ -9,6 +9,7 @@ import {
 	TableSortLabel,
 	makeStyles,
 	TableRow,
+	withStyles,
 	Paper,
 } from "@material-ui/core";
 import styles from "./TimeSeries.module.css";
@@ -29,6 +30,24 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: theme.palette.common.grey,
+		color: theme.palette.common.white,
+	},
+	body: {
+		fontSize: 14,
+	},
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		"&:nth-of-type(odd)": {
+			backgroundColor: theme.palette.action.hover,
+		},
+	},
+}))(TableRow);
+
 const TimeSeries = () => {
 	const classes = useStyles();
 	const [timeSeriesData, setTimeSeriesData] = useState([]);
@@ -36,7 +55,7 @@ const TimeSeries = () => {
 	const [orderBy, setOrderBy] = useState("confirmed");
 
 	const columns = [
-		{ id: "date", label: "Dates", minWidth: 200 },
+		{ id: "date", label: "Dates", minWidth: 170 },
 
 		{
 			id: "confirmedDaily",
@@ -103,16 +122,16 @@ const TimeSeries = () => {
 			stableSort(timeSeriesData, getComparator(order, orderBy)).map(
 				(data, index) => {
 					return (
-						<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+						<StyledTableRow hover role='checkbox' tabIndex={-1} key={index}>
 							{columns.map((column) => {
 								const value = data[column.id];
 								return (
-									<TableCell key={column.id} align={column.align}>
+									<StyledTableCell key={column.id} align={column.align}>
 										{value}
-									</TableCell>
+									</StyledTableCell>
 								);
 							})}
-						</TableRow>
+						</StyledTableRow>
 					);
 				}
 			)

@@ -12,8 +12,27 @@ import {
 	Typography,
 } from "@material-ui/core";
 import styles from "./DistrictTable.module.css";
+import { withStyles } from "@material-ui/core/styles";
 import { fetchDistrictData } from "../../api";
 import { getComparator, stableSort } from "../../utils/utils";
+
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: theme.palette.common.grey,
+		color: theme.palette.common.white,
+	},
+	body: {
+		fontSize: 14,
+	},
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		"&:nth-of-type(odd)": {
+			backgroundColor: theme.palette.action.hover,
+		},
+	},
+}))(TableRow);
 
 const useStyles = makeStyles((theme) => ({
 	visuallyHidden: {
@@ -36,7 +55,7 @@ const DistrictTable = () => {
 	const [order, setOrder] = useState("desc");
 
 	const columns = [
-		{ id: "name", label: "Tamil Nadu", minWidth: 200 },
+		{ id: "name", label: "Tamil Nadu", minWidth: 180 },
 
 		{
 			id: "confirmed",
@@ -91,16 +110,16 @@ const DistrictTable = () => {
 			stableSort(districtData, getComparator(order, orderBy)).map(
 				(data, index) => {
 					return (
-						<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+						<StyledTableRow hover role='checkbox' tabIndex={-1} key={index}>
 							{columns.map((column) => {
 								const value = data[column.id];
 								return (
-									<TableCell key={column.id} align={column.align}>
+									<StyledTableCell key={column.id} align={column.align}>
 										{value}
-									</TableCell>
+									</StyledTableCell>
 								);
 							})}
-						</TableRow>
+						</StyledTableRow>
 					);
 				}
 			)

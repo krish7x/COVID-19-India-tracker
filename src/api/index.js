@@ -52,8 +52,8 @@ export const fetchDistrictData = async () => {
 	try {
 		const { data } = await axios.get(districtURL);
 
-		const TN = data[32];
-		const modifiedData = TN.districtData.map((data) => {
+		const state = data[32];
+		const modifiedData = state.districtData.map((data) => {
 			return {
 				name: data.district,
 				confirmed: data.confirmed,
@@ -63,6 +63,16 @@ export const fetchDistrictData = async () => {
 			};
 		});
 		return modifiedData;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const fetchStateName = async () => {
+	try {
+		const { data } = await axios.get(districtURL);
+
+		return data;
 	} catch (error) {
 		console.log(error);
 	}

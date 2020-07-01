@@ -22,6 +22,7 @@ class App extends Component {
 		deltaData: {},
 		totalCount: [],
 		districtData: [],
+		stateName: [],
 	};
 
 	async componentDidMount() {
@@ -40,6 +41,10 @@ class App extends Component {
 		const fetchDistrictDdata = await fetchDistrictData();
 		this.setState({ districtData: fetchDistrictDdata });
 	}
+
+	onChangeHandler = async (state) => {
+		this.setState({ stateName: state });
+	};
 
 	render() {
 		const {
@@ -61,6 +66,7 @@ class App extends Component {
 				/>
 				<Charts data={this.state.data} />
 				<StatePicker onSort={this.onSort} />
+
 				<DistrictTable />
 				<TimeSeries />
 			</div>

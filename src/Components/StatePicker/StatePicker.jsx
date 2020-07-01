@@ -9,6 +9,7 @@ import {
 	TableSortLabel,
 	Paper,
 	makeStyles,
+	withStyles,
 	Typography,
 } from "@material-ui/core";
 import styles from "./StatePicker.module.css";
@@ -29,6 +30,24 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: theme.palette.common.grey,
+		color: theme.palette.common.white,
+	},
+	body: {
+		fontSize: 14,
+	},
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		"&:nth-of-type(odd)": {
+			backgroundColor: theme.palette.action.hover,
+		},
+	},
+}))(TableRow);
+
 const StatePicker = () => {
 	const classes = useStyles();
 	const [stateData, setStateData] = useState([]);
@@ -39,7 +58,7 @@ const StatePicker = () => {
 		{
 			id: "stateName",
 			label: "States",
-			minWidth: 200,
+			minWidth: 180,
 			numeric: false,
 			disablePadding: false,
 		},
@@ -100,16 +119,16 @@ const StatePicker = () => {
 			stableSort(stateData, getComparator(order, orderBy)).map(
 				(states, index) => {
 					return (
-						<TableRow hover role='checkbox' tabIndex={-1} key={index}>
+						<StyledTableRow hover role='checkbox' tabIndex={-1} key={index}>
 							{columns.map((column) => {
 								const value = states[column.id];
 								return (
-									<TableCell key={column.id} align={column.align}>
+									<StyledTableCell key={column.id} align={column.align}>
 										{value}
-									</TableCell>
+									</StyledTableCell>
 								);
 							})}
-						</TableRow>
+						</StyledTableRow>
 					);
 				}
 			)
