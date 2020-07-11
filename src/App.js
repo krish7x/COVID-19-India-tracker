@@ -7,7 +7,6 @@ import {
 	fetchTimeSeries,
 	fetchTNTotCnt,
 	fetchDistrictData,
-	Data,
 } from "./api";
 import Charts from "./Components/Charts/Charts";
 import covid19 from "./Images/covid19.png";
@@ -46,12 +45,6 @@ class App extends Component {
 
 	onChangeHandler = async (state) => {
 		this.setState({ stateName: state });
-	};
-
-	preload = () => {
-		Data().then((data) => {
-			this.setState({ newData: data });
-		});
 	};
 
 	render() {
