@@ -58,7 +58,7 @@ const StatePicker = () => {
 		{
 			id: "stateName",
 			label: "States",
-			minWidth: 180,
+			minWidth: 170,
 			numeric: false,
 			disablePadding: false,
 		},

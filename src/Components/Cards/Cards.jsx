@@ -76,7 +76,7 @@ const Cards = ({ confirmed, date, recovered, deaths }) => {
 						<Typography color='textPrimary' variant='h4'>
 							<CountUp
 								start={0}
-								end={confirmed - recovered}
+								end={confirmed - (recovered + deaths)}
 								duration={2}
 								separator={","}
 							/>

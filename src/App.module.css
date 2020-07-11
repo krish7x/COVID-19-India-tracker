@@ -8,22 +8,22 @@ html {
 }
 
 .heading {
-	color: white;
+	color: black;
 	font-family: "Rubik", sans-serif;
 	margin-right: 6rem;
 }
 
 body {
-	background: #202124;
+	background: #ffff;
 }
 
 .covid {
 	background-color: white;
 	border-radius: 6px;
-	margin-left: 5px;
+	margin-left: 2px;
 	position: absolute;
 	top: 2rem;
-	right: 27%;
+	right: 30%;
 }
 
 .container {
@@ -72,7 +72,7 @@ h1 {
 }
 @media (max-width: 1200px) {
 	.covid {
-		right: 25%;
+		right: 22%;
 	}
 }
 @media (max-width: 1000px) {
@@ -182,14 +182,14 @@ h1 {
 		top: 1.4rem;
 	}
 }
-@media (max-width: 350px) {
+@media (max-width: 320px) {
 	.heading {
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 		margin-left: 1.7rem;
 	}
 	.covid {
 		width: 2.5rem;
-		right: 16%;
-		top: 1.4rem;
+		right: 20%;
+		top: 1rem;
 	}
 }
