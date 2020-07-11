@@ -129,27 +129,3 @@ export const fetchTNTotCnt = async () => {
 		console.log("fetchTNTotCnt -> error", error);
 	}
 };
-
-export const Data = fetch(
-	"https://coronavirus-tracker-india-covid-19.p.rapidapi.com/api/getStatewiseSorted",
-	{
-		method: "GET",
-		headers: {
-			"x-rapidapi-host": "coronavirus-tracker-india-covid-19.p.rapidapi.com",
-			"x-rapidapi-key": "84ee719a5amshfcbfe524e097b81p1bc655jsn858494ad3576",
-		},
-	}
-)
-	.then(function status(response) {
-		if (response.status >= 200 && response.status < 300) {
-			return Promise.resolve(response);
-		} else {
-			return Promise.reject(new Error(response.statusText));
-		}
-	})
-	.then(function json(response) {
-		return response.json();
-	})
-	.catch((err) => {
-		console.log(err);
-	});
