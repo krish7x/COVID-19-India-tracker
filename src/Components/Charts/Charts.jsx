@@ -33,10 +33,27 @@ const Charts = () => {
 						fill: true,
 					},
 					{
+						data: indiaData.map(
+							(data) =>
+								data.confirmedDaily - (data.recoveredDaily + data.deathsDaily)
+						),
+						label: "Active",
+						borderColor: "#7FECFF",
+						backgroundColor: "#7FECFF",
+						fill: true,
+					},
+					{
+						data: indiaData.map((data) => data.recoveredDaily),
+						label: "Recovered",
+						borderColor: "rgba(0,255,0,0.8)",
+						backgroundColor: "rgba(0,255, 0, 0.6)",
+						fill: true,
+					},
+					{
 						data: indiaData.map((data) => data.deathsDaily),
 						label: "Deaths",
-						borderColor: "red",
-						backgroundColor: "rgba(255, 0, 0, 0.6)",
+						borderColor: "rgba(255,0,0,0.8)",
+						backgroundColor: "rgba(255,0, 0, 0.6)",
 						fill: true,
 					},
 				],
