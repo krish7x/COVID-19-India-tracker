@@ -9,7 +9,6 @@ const Charts = () => {
 
 	const fetchAPI = async () => {
 		const fetchData = await fetchTimeSeries();
-
 		setIndiaData(fetchData);
 	};
 

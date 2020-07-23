@@ -36,6 +36,7 @@ export const fetchStateData = async () => {
 				stateName: data.loc,
 				confirmedPersons: data.totalConfirmed,
 				recoveredPersons: data.discharged,
+				activeCases: data.totalConfirmed - (data.discharged + data.deaths),
 				deathPatients: data.deaths,
 			};
 		});
