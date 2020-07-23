@@ -54,8 +54,6 @@ const StatePicker = () => {
 	const [orderBy, setOrderBy] = useState("confirmedPersons");
 	const [order, setOrder] = useState("desc");
 
-	console.log(stateData);
-
 	const columns = [
 		{
 			id: "stateName",
