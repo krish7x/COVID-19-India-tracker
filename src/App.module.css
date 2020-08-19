@@ -47,6 +47,13 @@ h1 {
 	margin-right: 13px;
 }
 
+@media (max-width: 1142px) {
+	.tables {
+		width: 100% !important;
+		overflow: scroll;
+	}
+}
+
 @media (max-width: 770px) {
 	.container {
 		width: 100% !important;

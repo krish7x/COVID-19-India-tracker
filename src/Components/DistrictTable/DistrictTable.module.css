@@ -7,6 +7,10 @@
 	font-family: Roboto;
 }
 
+.container::-webkit-scrollbar {
+	display: none !important;
+}
+
 @media (max-width: 770px) {
 	.root {
 		width: 100%;

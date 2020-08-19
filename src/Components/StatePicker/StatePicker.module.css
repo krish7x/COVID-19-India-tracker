@@ -14,8 +14,6 @@
 	width: 1;
 }
 
-@media (max-width: 770px) {
-	.root {
-		width: 100%;
-	}
+.container::-webkit-scrollbar {
+	display: none !important;
 }
