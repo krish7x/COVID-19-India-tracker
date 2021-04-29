@@ -5,62 +5,66 @@ import { fetchTimeSeries } from "../../api";
 import styles from "./Charts.module.css";
 
 const Charts = () => {
-	const [indiaData, setIndiaData] = useState({});
+  const [indiaData, setIndiaData] = useState({});
 
-	const fetchAPI = async () => {
-		const fetchData = await fetchTimeSeries();
-		setIndiaData(fetchData);
-	};
+  const fetchAPI = async () => {
+    const fetchData = await fetchTimeSeries();
 
-	useEffect(() => {
-		fetchAPI();
-	}, []);
+    let indexLength = fetchData.length - 90;
+    let newData = fetchData.slice(Math.max(indexLength, 1));
 
-	const lineChart = indiaData[0] ? (
-		<Line
-			data={{
-				labels: indiaData.map(({ date }) => date),
-				pointHoverRadius: 5,
-				color: "#ffff",
+    setIndiaData(newData);
+  };
 
-				datasets: [
-					{
-						data: indiaData.map((data) => data.confirmedDaily),
-						label: "Infected",
-						borderColor: "#3333ff",
-						backgroundColor: "rgba(0, 0, 255, 0.6)",
-						fill: true,
-					},
-					{
-						data: indiaData.map(
-							(data) =>
-								data.confirmedDaily - (data.recoveredDaily + data.deathsDaily)
-						),
-						label: "Active",
-						borderColor: "#7FECFF",
-						backgroundColor: "#7FECFF",
-						fill: true,
-					},
-					{
-						data: indiaData.map((data) => data.recoveredDaily),
-						label: "Recovered",
-						borderColor: "rgba(0,255,0,0.8)",
-						backgroundColor: "rgba(0,255, 0, 0.6)",
-						fill: true,
-					},
-					{
-						data: indiaData.map((data) => data.deathsDaily),
-						label: "Deaths",
-						borderColor: "rgba(255,0,0,0.8)",
-						backgroundColor: "rgba(255,0, 0, 0.6)",
-						fill: true,
-					},
-				],
-			}}
-		/>
-	) : null;
+  useEffect(() => {
+    fetchAPI();
+  }, []);
 
-	return <div className={styles.container}>{lineChart}</div>;
+  const lineChart = indiaData[0] ? (
+    <Line
+      data={{
+        labels: indiaData.map(({ date }) => date),
+        pointHoverRadius: 5,
+        color: "#ffff",
+
+        datasets: [
+          {
+            data: indiaData.map((data) => data.confirmedDaily),
+            label: "Infected",
+            borderColor: "#3333ff",
+            backgroundColor: "rgba(0, 0, 255, 0.6)",
+            fill: true,
+          },
+          {
+            data: indiaData.map(
+              (data) =>
+                data.confirmedDaily - (data.recoveredDaily + data.deathsDaily)
+            ),
+            label: "Active",
+            borderColor: "#7FECFF",
+            backgroundColor: "#7FECFF",
+            fill: true,
+          },
+          {
+            data: indiaData.map((data) => data.recoveredDaily),
+            label: "Recovered",
+            borderColor: "rgba(0,255,0,0.8)",
+            backgroundColor: "rgba(0,255, 0, 0.6)",
+            fill: true,
+          },
+          {
+            data: indiaData.map((data) => data.deathsDaily),
+            label: "Deaths",
+            borderColor: "rgba(255,0,0,0.8)",
+            backgroundColor: "rgba(255,0, 0, 0.6)",
+            fill: true,
+          },
+        ],
+      }}
+    />
+  ) : null;
+
+  return <div className={styles.container}>{lineChart}</div>;
 };
 
 export default Charts;
